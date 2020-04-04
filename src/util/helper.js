@@ -1,3 +1,5 @@
+import download from 'image-downloader';
+
 export default {
   getRandomString: (length) => {
     var result           = '';
@@ -31,5 +33,35 @@ export default {
     });
     if (hasType) {return true;}
     return false;
+  },
+  downloadImage: (url, path) => {  
+    let options = {
+      url: url,
+      dest: path
+    };
+
+    download.image(options)
+      .then(({ filename }) => {
+        console.log('Saved to', filename);
+      })
+      .catch((err) => console.error(err));
+     
+  },
+  getFolder: (callback) => {
+    let input = document.createElement('input');
+    document.body.appendChild(input);
+    input.type='file';
+    input.onchange = e => {
+      if (e.target.files[0]) {
+        let path = e.target.files[0].path.split('/');
+        path.pop();
+        callback(path.join('/'));
+        document.body.removeChild(input);
+      }
+    };
+    input.setAttribute('directory', '');
+    input.webkitdirectory = true;
+    input.click();
+    
   }
 };

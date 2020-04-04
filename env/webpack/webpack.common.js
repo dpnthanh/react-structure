@@ -38,4 +38,5 @@ module.exports = {
       fileChunkName: '[name].html'
     })
   ],
+  target: 'node'
 };

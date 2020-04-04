@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import XLSX from 'xlsx';
+import { helper } from '@/util';
+import path from 'path';
 
 const useHandlers = () => {
   const [imageUrls, setImageUrls] = useState([]);
@@ -43,28 +45,13 @@ const useHandlers = () => {
   };
 
   const handleClickDownloadFile = () => {
-    imageUrls.forEach(link => {
-      downloadUrl(link);
+    helper.getFolder(saveDir => {
+      imageUrls.forEach(link => {
+        console.log('download: ', link);
+        helper.downloadImage(link, path.resolve(saveDir, helper.getRandomString(10) + '.jpg'));
+      });
     });
-  };
-
-  const  downloadUrl = (url) => {
-    const a = document.createElement('a');
-    a.style.display = 'none';
-    document.body.appendChild(a);
-  
-    // Set the HREF to a Blob representation of the data to be downloaded
-    a.href = url;
-  
-    // Use download attribute to set set desired file name
-    a.setAttribute('download', 'image');
-  
-    // Trigger the download by simulating click
-    a.click();
-  
-    // Cleanup
-    window.URL.revokeObjectURL(a.href);
-    document.body.removeChild(a);
+    
   };
 
   return {
