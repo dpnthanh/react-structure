@@ -8,16 +8,27 @@ const Excel = () => {
   const {
     handleClickButtonHome,
     handleUploadFile,
+    handleClickDownloadFile,
+    imageUrls,
   } = useHandlers();
 
   return(
-    <div>
+    <div className="excel_container">
       <Button title="Home" onClick={handleClickButtonHome}/>
       <hr/>
-      <hr/>
       <FileUpload onChange={handleUploadFile}/>
+      <Button title="Download" onClick={handleClickDownloadFile}/>
       <hr/>
-      
+      <p>Image Count: {imageUrls.length}</p>
+      {
+        imageUrls.map((imageUrl, index) => {
+          return (
+            <a key={index} href={imageUrl} download="your-file">
+              <img className="excel_image" src={imageUrl} />
+            </a>
+          ) ;
+        })
+      }
     </div>
   );
 };
