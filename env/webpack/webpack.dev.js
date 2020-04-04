@@ -7,6 +7,7 @@ const path = require('path');
 const GlobalCssLoader = require('./module/global-css');
 const ImageLoader = require('./module/image');
 const FontLoader = require('./module/font');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports =  merge(common, {
   mode: 'development',
@@ -22,15 +23,17 @@ module.exports =  merge(common, {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     // new BundleAnalyzerPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ],
   devtool: 'source-map',
   devServer: {
     contentBase: path.join(rootPath, '/dist/'),
-    inline: true,
-    host: '192.168.1.4',
+    host: 'localhost',
+    compress: true,
     port: 3030,
-    hot: true
-  }
+    hot: true,
+    writeToDisk: true,
+  },
 });

@@ -9,7 +9,8 @@ const ImageLoader = require('./module/image');
 const FontLoader = require('./module/font');
 
 module.exports =  merge(common, {
-  mode: 'production',
+  mode: 'development',
+  watch: true,
   resolve: {
     extensions: ['.json', '.js', '.jsx']
   },
@@ -25,8 +26,8 @@ module.exports =  merge(common, {
     // new BundleAnalyzerPlugin(),
   ],
   output: {
-    path: path.resolve(rootPath, 'build'),
-    filename: 'index.js',
+    path: path.resolve(rootPath, 'dist'),
+    filename: 'app.[hash:6].js',
     chunkFilename: '[name].[hash:6].js'
   }
 });

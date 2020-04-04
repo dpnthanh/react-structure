@@ -5,7 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config env/webpack/webpack.dev.js",
-    "build": "webpack --config env/webpack/webpack.prod.js"
+    "build": "webpack --config env/webpack/webpack.prod.js",
+    "electron-dev": "yarn dev | electron ./electron.js"
+  },
+  "build": {
+    "appId": "my-electron-app",
+    "mac": {
+      "category": "demo.app"
+    }
   },
   "keywords": [],
   "author": "",
@@ -13,7 +20,8 @@
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2"
+    "react-router-dom": "^5.1.2",
+    "xlsx": "^0.15.6"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -22,15 +30,20 @@
     "app-root-path": "^3.0.0",
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.4.2",
     "electron": "^8.2.0",
+    "electron-builder": "^22.4.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.0.4",
     "image-webpack-loader": "^6.0.0",
     "node-sass": "^4.13.1",
+    "prettier": "^2.0.2",
     "sass-loader": "^8.0.2",
     "source-map": "^0.7.3",
     "style-loader": "^1.1.3",
