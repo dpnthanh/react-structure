@@ -1,0 +1,15 @@
+$main-color: #444;
+$text-color: #fff;
+$size: 2.5rem;
+
+.button_main {
+    background-color:$main-color;
+    color: $text-color;
+    font-weight: 500;
+    font-size: 1rem;
+    height: $size;
+    width: $size*5;
+    border-color: $main-color;
+    border-radius: $size/2.5;
+    outline-width: 0;
+}

@@ -1,16 +1,23 @@
 import React from 'react';
 import useHandlers from './Home.main';
+import Button from 'component/kit/button';
 
 const Home = () => {
   const {
-
+    handleClickButtonExcel
   } = useHandlers();
 
   return(
     <div>
-        <h1>Home</h1>
+      <header>
+        <h1>Super Tools</h1>
+      </header>
+      <Button
+        title="EXCEL"
+        onClick={handleClickButtonExcel}
+      />
     </div>
-  )
-}
+  );
+};
 
 export default Home;

@@ -1,24 +1,24 @@
 import React from 'react';
-import useHandlers from './App.main';
 import './app.scss';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from '../home';
+import ExcelPage from '../excel';
 
 const App = () => {
-  const {
-
-  } = useHandlers();
-
   return (
     <div className="app">
-    <h1>test</h1>
       <Router>
-        <Route path='/'>
-          <HomePage/>
-        </Route>
+        <Switch>
+          <Route exact path='/'>
+            <HomePage/>
+          </Route>
+          <Route path='/excel'>
+            <ExcelPage/>
+          </Route>
+        </Switch>
       </Router>
     </div>
-  )
-}
+  );
+};
 
 export default App;
