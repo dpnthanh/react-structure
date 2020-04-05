@@ -25,7 +25,7 @@ module.exports =  merge(common, {
     // new BundleAnalyzerPlugin(),
   ],
   output: {
-    path: path.resolve(rootPath, 'build'),
+    path: path.resolve(rootPath, 'dist'),
     filename: 'index.js',
     chunkFilename: '[name].[hash:6].js'
   }

@@ -1,17 +1,46 @@
 {
-  "name": "react-webpack",
+  "name": "supper-tools",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "my electron app",
+  "main": "./electron.js",
   "scripts": {
     "dev": "webpack-dev-server --config env/webpack/webpack.dev.js",
     "build": "webpack --config env/webpack/webpack.prod.js",
-    "electron-dev": "yarn dev | electron ./electron.js"
+    "electron-dev": "yarn dev | electron ./electron.js",
+    "electron-build": "yarn build && electron-builder ./electron.js"
   },
   "build": {
-    "appId": "my-electron-app",
-    "mac": {
-      "category": "demo.app"
+    "appId": "net.kaonashi.supertools",
+    "files": [
+      "./dist/**/*",
+      "./electron.js"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "squirrel",
+      "icon": "build/favicon.ico"
+    },
+    "directories": {
+      "buildResources": "./build"
     }
   },
   "keywords": [],

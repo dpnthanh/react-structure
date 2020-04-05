@@ -1,6 +1,8 @@
 import React from 'react';
 import useHandlers from './Home.main';
 import Button from 'component/kit/button';
+import imgFilm from 'img/film.jpg';
+import './Home.scss';
 
 const Home = () => {
   const {
@@ -16,6 +18,7 @@ const Home = () => {
         title="EXCEL"
         onClick={handleClickButtonExcel}
       />
+      <img className="home_image" src={imgFilm}/>
     </div>
   );
 };
