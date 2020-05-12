@@ -11,13 +11,15 @@ const Home = () => {
 
   return(
     <div>
-      <header>
+      <header className="home_header">
         <h1>Super Tools</h1>
       </header>
-      <Button
-        title="EXCEL"
-        onClick={handleClickButtonExcel}
-      />
+      <div className="view_center">
+        <Button
+          title="Excel"
+          onClick={handleClickButtonExcel}
+        />
+      </div>
       <img className="home_image" src={imgFilm}/>
     </div>
   );

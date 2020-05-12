@@ -1,3 +1,17 @@
+.home_header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #03A9F4;
+    color: white;
+}
 .home_image {
     width: 100%;
+}
+
+.view_center {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

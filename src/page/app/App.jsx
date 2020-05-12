@@ -1,5 +1,6 @@
 import React from 'react';
 import './app.scss';
+import './font.scss';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from '../home';
 import ExcelPage from '../excel';
