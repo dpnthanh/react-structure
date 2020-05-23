@@ -8,8 +8,10 @@ const Excel = () => {
   const {
     handleClickButtonHome,
     handleUploadFile,
-    handleClickDownloadFile,
-    imageUrls,
+    handleClickSelectDownloadPath,
+    imageList,
+    logList,
+    handleClickDownload
   } = useHandlers();
 
   return(
@@ -17,18 +19,20 @@ const Excel = () => {
       <Button title="Home" onClick={handleClickButtonHome}/>
       <hr/>
       <FileUpload onChange={handleUploadFile}/>
-      <Button title="Download" onClick={handleClickDownloadFile}/>
+      <Button title="Thư mục lưu ảnh" onClick={handleClickSelectDownloadPath}/>
+      <Button title="Tải ảnh" onClick={handleClickDownload}/>
       <hr/>
-      <p>Image Count: {imageUrls.length}</p>
-      {
-        imageUrls.map((imageUrl, index) => {
-          return (
+      <p>Tổng số transaction: {imageList ? imageList.reduce((count, item) => count + item.imageList.length, 0) : 0 }</p>
+      <p>{logList}</p>
+      {/* {
+        imageList.map(({images}) => 
+          images.map( ({imageUrl}, index) => 
             <a key={index} href={imageUrl} download="your-file">
               <img className="excel_image" src={imageUrl} />
             </a>
-          ) ;
-        })
-      }
+          )
+        )
+      } */}
     </div>
   );
 };

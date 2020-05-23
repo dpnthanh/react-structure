@@ -5,8 +5,6 @@ $text-color-hover: #fff;
 $size: 45px;
 
 .button_main {
-    height: $size;
-    width: $size*3.1;
     font-family: RobotoMedium;
     font-size: 11px;
     text-transform: uppercase;
@@ -17,6 +15,9 @@ $size: 45px;
     border: none;
     outline: none;
     transition: all 0.3s ease-in 0s;
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     &:hover {
         background-color: $background-color-hover;
         color: $text-color-hover;

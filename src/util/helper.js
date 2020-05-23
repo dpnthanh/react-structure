@@ -1,5 +1,6 @@
 import download from 'image-downloader';
-
+import Path from 'path';
+import fs from 'fs';
 export default {
   getRandomString: (length) => {
     var result           = '';
@@ -34,19 +35,21 @@ export default {
     if (hasType) {return true;}
     return false;
   },
+
   downloadImage: (url, path) => {  
+    let dirName = Path.dirname(path);
+    if(!fs.existsSync(dirName)) {
+      fs.mkdirSync(dirName, {recursive: true});
+    }
+    
     let options = {
       url: url,
       dest: path
     };
 
-    download.image(options)
-      .then(({ filename }) => {
-        console.log('Saved to', filename);
-      })
-      .catch((err) => console.error(err));
-     
+    return download.image(options);
   },
+
   getFolder: (callback) => {
     let input = document.createElement('input');
     document.body.appendChild(input);
@@ -63,5 +66,23 @@ export default {
     input.webkitdirectory = true;
     input.click();
     
+  },
+  removeAccents: (str) => {
+    return str.normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/đ/g, 'd').replace(/Đ/g, 'D');
+  },
+  replaceSpace: (str) => {
+    str = str.replace(/ /g, '_');
+    return str;
+  },
+  chunkArray: (myArray, chunkSize) => {
+    var results = [];
+ 
+    while (myArray.length) {
+      results.push(myArray.splice(0, chunkSize));
+    }
+ 
+    return results;
   }
 };
