@@ -23,7 +23,11 @@ const Excel = () => {
       <Button title="Tải ảnh" onClick={handleClickDownload}/>
       <hr/>
       <p>Tổng số transaction: {imageList ? imageList.reduce((count, item) => count + item.imageList.length, 0) : 0 }</p>
-      <p>{logList}</p>
+      <div className="log_container">
+        {
+          logList.map(log => <p key={log}>{log}</p>)
+        }
+      </div>
       {/* {
         imageList.map(({images}) => 
           images.map( ({imageUrl}, index) => 
