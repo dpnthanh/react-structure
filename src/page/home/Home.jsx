@@ -1,13 +1,17 @@
 import React from 'react';
-import useHandlers from './Home.main';
 import Button from 'component/kit/button';
 import imgFilm from 'img/film.jpg';
 import './Home.scss';
+import {
+  useHandleClickButtonExcel,
+  useHandleClickButtonDemoRecoil,
+} from './Home.util';
+import { useHistory } from 'react-router-dom';
 
 const Home = () => {
-  const {
-    handleClickButtonExcel
-  } = useHandlers();
+  const history = useHistory();
+  const handleClickButtonExcel = useHandleClickButtonExcel({ history });
+  const handleClickButtonDemoRecoil = useHandleClickButtonDemoRecoil({ history });
 
   return(
     <div>
@@ -18,6 +22,10 @@ const Home = () => {
         <Button
           title="Excel"
           onClick={handleClickButtonExcel}
+        />
+        <Button
+          title="Demo recoil"
+          onClick={handleClickButtonDemoRecoil}
         />
       </div>
       <img className="home_image" src={imgFilm}/>

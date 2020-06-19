@@ -8,15 +8,11 @@ const useHandlers = () => {
   const [transactionList, setTransactionList] = useState([]);
   const [logList, setLogList] = useState([]);
   const [outputDir, setOutputDir] = useState([]);
-  const [downloadIndex, setDownloadIndex] = useState(0);
   const history = useHistory();
+
   const handleClickButtonHome = () => {
     history.push('/');
   };
-
-  useEffect(() => {
-    console.log(downloadIndex);
-  }, [downloadIndex]);
 
   const handleUploadFile = e => {
     if(e.target.files && e.target.files[0]) {
@@ -75,21 +71,15 @@ const useHandlers = () => {
     });
   };
 
-  const handleClickDownload =  () => {
-    let newTransactionList = helper.chunkArray(transactionList, 100);
-
-    downloadImages(newTransactionList[15]).then(value => {
-      console.log(value);
-      downloadImages(newTransactionList[26]).then(value => {
-        console.log(value);
-        downloadImages(newTransactionList[27]).then(value => {
-          console.log(value);
-          downloadImages(newTransactionList[28]).then(value => {
-            console.log(value);
-          });
-        });
-      });
-    });
+  const handleClickDownload = async () => {
+    log('Downloading....');
+    let newTransactionList = helper.chunkArray(transactionList, 50);
+    const listLength = newTransactionList.length;
+    for(let i = 0; i < listLength; i ++) {
+      const res = await downloadImages(newTransactionList[i]);
+      log(`${i+1}/${listLength}`);
+    }
+    // download code here
   };
 
   const extractList = list => {
@@ -104,13 +94,13 @@ const useHandlers = () => {
 
   const downloadImages = (list) => 
     Promise.all(extractList(list).map(download => helper.downloadImage(download.image.imageUrl, path.resolve(outputDir, download.address, download.date, `${download.image.imageName}.jpg`))));
-  
 
   const log = (message) => {
     console.log(message);
     setLogList(prevState =>[...prevState, message]);
   };
 
+    
   return {
     handleClickButtonHome,
     handleUploadFile,
